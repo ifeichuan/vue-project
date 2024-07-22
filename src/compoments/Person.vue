@@ -36,15 +36,16 @@ export default {
 </script>
 
 <script lang="ts" setup>
-    let name = '张三'
-    let age = 12
+    import {ref} from 'vue'
+    let name = ref('张三')
+    let age = ref(12)
     let tel =  '119'
 
     function changeAge(){
-        age +=1
+        age.value +=1
     }
     function changeName(){
-        name = 'CHs'
+        name.value = 'CHs'
     }
 </script>
 
