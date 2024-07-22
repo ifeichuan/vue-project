@@ -9,32 +9,28 @@
 </template>
 
 <script lang='ts'>
-import { log } from 'console';
-import { isNumberObject } from 'util/types';
-
 // import { tel } from 'vue';
-
 //JS或TS
 export default {
         name:'Person',
-        data(){
-            return{
-                name:'张三',
-                age:18,
-                tel:"8888888888",
+        // 组合式API
+        setup() {
+            // 数据 
+            //setup函数中没有this
+            let name = '张三'//此时name不是响应式
+            let age = 18//此时age不是响应式
+            let tel = '18888888'
+
+            function changeName(){
+                name = '扉川'
             }
-        },
-        methods: {
-            showTel(){
-                alert(this.tel)
-            },
-            changeName(){
-                this.name = prompt("请输入明治")
-            },
-            changeAge(){
-                var num = prompt("请输入数字")
-                this.age = num
-            },
+            function changeAge(){
+                age = 404
+            }
+            function showTel(){
+                alert(tel)
+            }
+            return {name,age,changeName,changeAge,showTel}
         }
     }
 </script>
