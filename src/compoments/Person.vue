@@ -1,51 +1,30 @@
 <template>
     <div class="person">
-        <h2>姓名:{{ name }}</h2>
-        <h2>年龄:{{ age}}</h2>
-        <button @click="changeName">修改名字</button>
-        <button @click="changeAge">修改年龄</button>
-        <button @click = "showTel">查看联系方式</button>
+        <h2>一辆{{car.name}}车,价值{{ car.price }}万</h2>
+        <button @click="changePrice">修改汽车价格</button>
+        <ul>
+            <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+        </ul>
     </div>
 </template>
 
 <script lang='ts'>
-// import { tel } from 'vue';
-//JS或TS
 export default {
         name:'Person',
-        // 组合式API
-        // setup() {
-        //     // 数据 
-        //     //setup函数中没有this
-        //     let name = '张三'//此时name不是响应式
-        //     let age = 18//此时age不是响应式
-        //     let tel = '18888888'
-
-        //     function changeName(){
-        //         name = '扉川'
-        //     }
-        //     function changeAge(){
-        //         age = 404
-        //     }
-        //     function showTel(){
-        //         alert(tel)
-        //     }
-        //     return {name,age,changeName,changeAge,showTel}
-        // }
     }
 </script>
 
 <script lang="ts" setup>
-    import {ref} from 'vue'
-    let name = ref('张三')
-    let age = ref(12)
-    let tel =  '119'
+    import { reactive, Reactive } from 'vue';
+    let car = reactive({brand:'奔驰',price:100})
+    let games  =reactive([
+        {id:'01',name:'王者荣耀'},
+        {id:'02',name:'原神,启动!'},
+        {id:'03', name:'三国杀!'}
+    ])
 
-    function changeAge(){
-        age.value +=1
-    }
-    function changeName(){
-        name.value = 'CHs'
+    function changePrice(){
+        car.price += 10
     }
 </script>
 
