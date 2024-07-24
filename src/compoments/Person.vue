@@ -8,14 +8,8 @@
     </div>
 </template>
 
-<script lang='ts'>
-export default {
-        name:'Person',
-    }
-</script>
-
-<script lang="ts" setup>
-    import { reactive, Reactive } from 'vue';
+<script lang="ts" setup name = 'Person'>
+    import { reactive } from 'vue';
     let car = reactive({brand:'奔驰',price:100})
     let games  =reactive([
         {id:'01',name:'王者荣耀'},
@@ -26,7 +20,7 @@ export default {
     function changePrice(){
         car.price += 10
     }
-</script>
+</>
 
 <style>
 /*  样式  */
