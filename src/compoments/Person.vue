@@ -1,38 +1,30 @@
 <template>
     <div class="person">
-            姓: <input type="text" v-model="firstName" ><br>
-            名: <input type="text" v-model="lastName"> <br>
-            <button @click="changeName">将全名改为李斯</button>
-            全名 <span>{{fullNmae}}</span> <br>
+        <h1>情况一:监视[ref]定义基本数据类型</h1>
+        <h2>当前求和为:{{ sum }}</h2>
+        <button @click="changeSum">点我sum+1</button>
     </div>
+
 </template>
 
 <script lang="ts" setup name = 'Person'>
-    import { log } from 'console';
-import { ref,computed} from 'vue';
-    let firstName = ref('zhang')
-    let lastName = ref('san')
-    
-    //这么计算的fullName是一个计算属性，且只读
-    // let fullNmae = computed(()=>{
-    //     return firstName.value.slice(0,1).toUpperCase() + firstName.value.slice(1) + '-' +lastName.value
-    // })
-    //这么计算的fullName是一个计算属性，且可读可写
-    let fullNmae = computed({
-        get(){
-            return firstName.value.slice(0,1).toUpperCase() + firstName.value.slice(1) + '-' +lastName.value
-        },
-        set(val){
-            const [str1,str2] = val.split('-')
-            firstName.value = str1
-            lastName.value = str2
-            console.log('set',val);
-            
-        }
-    })
-    function changeName(){
-        fullNmae .value = '李-四'
+import { ref,watch} from 'vue';
+// import 
+// 数据
+let sum = ref(0);
+// 方法
+function changeSum(){
+    sum.value += 1
+}
+// 监视 
+// watch(谁,回调函数)
+const stopwatch = watch(sum,(newValue,oldValue)=>{
+    console.log(newValue,oldValue);
+    if(newValue>= 10){
+        stopwatch()
     }
+})
+console.log(stopwatch)
 </script>
         
 <style>
