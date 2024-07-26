@@ -11,30 +11,26 @@
 </template>
 
 <script lang="ts" setup name = 'Person'>
-    import { ref,watch} from 'vue';
+    import { reactive,watch} from 'vue';
     // 数据
-    let person = ref({
+    let person = reactive({
         name:'张三',
          age:18
         })
     // 方法
     function changeName(){
-        person.value.name += '~'
+        person.name += '~'
     }
     function changeAge(){
-        person.value.age +=1
+        person.age +=1
     }
     function changePerson(){
-        person.value = {name:'王五',age:90}
+        //  批量修改,地址不更改
+        Object.assign(person,{name:'李四',age:20})
     }
-    //监视 情况一:监视[ref]定义的[对象类型]数据,监视的是对象的地址值,若想监视对象内部属性的变化,需要手动开启深度监视
-    //watch第一个参数:被监视的数据
-    //watch第二个参数:监视的回调函数 
-    //watch第三个参数:配置对象
     watch(person,(newValue,oldValue)=>{
-        console.log(newValue,oldValue);
-        
-    },{deep:true,immediate})
+        console.log(person,newValue,oldValue)
+    })
 </script>
 
 <style>
