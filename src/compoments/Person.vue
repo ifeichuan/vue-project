@@ -1,65 +1,58 @@
 <template>
     <div class="person">
-        <h2>{{ person.name }}</h2>
-        <h2>{{ person.age}}</h2>
-        <h2>{{ person.car.c1 }},{{ person.car.c2 }}</h2>
-        <button @click="changeName">修改明治</button>
-        <button @click="changeAge">修改年龄</button>
-        <button @click="changeC1">修改第一台车</button>
-        <button @click="changeC2">修改第二台车</button>
-        <button @click="changeCar">修改整台车</button>
+        <h2>当水温达到 60°,或水位达到 80cm 时，给服务器发请求</h2>
+        <h2>当前水温:{{ temp }}</h2>
+        <h2>当前水位:{{ height }}</h2>
+        <button @click="changeTemp">水温 +1</button>
+        <button @click="changeHeight">点我 +1</button>
     </div>
 
 </template>
 
-<script lang="ts" setup name = 'Person'>
-    import { reactive,watch } from 'vue';
-    let person = reactive({
-        name:'张三',
-        age:18,
-        car:{
-            c1:'奔驰',
-            c2:'宝马'
-        }
-    })
-    function changeName(){
-        person.name += '~'
-        // Object.assign(person,{name:'lis'})
+<script lang="ts" setup name='Person'>
+    import { log } from 'console';
+import { ref, watchEffect } from 'vue';
+
+    var temp = ref(10);
+    var height = ref(0);
+
+    function changeTemp() {
+        temp.value += 10;
     }
-    function changeAge(){
-        person.age += 1
+    function changeHeight() {
+        height.value += 10;
     }
-    function changeC1(){
-        person.car.c1 = '奥迪'
-    }
-    function changeC2(){
-        person.car.c2 = 'AE86'
-    }
-    function changeCar(){
-        person.car = {c1:'雅迪',c2:'帝豪'}
-    }
-    // 第四种情况，监视对象中某个值，可以使用函数式返回该值
-    // watch(()=>person.car,(newValue,oldValue)=>{
-    //     console.log(newValue,oldValue);
+    // watch 写法
+    // let tempWatch = watch(temp,()=>{
+    //     if(temp.value>=60){
+    //         alert('dddd')
+    //         tempWatch()
+    //     }
+    // })
+const x = watchEffect(()=>{
+    if(temp.value>0){
+        console.log("222");
         
-    // },{deep:true})
-    // 第五种情况
-    watch([()=>person.car,()=>person.name],(newValue,oldValue)=>{
-        console.log(newValue,oldValue);
+    }
+    if(temp.value>99){
+        console.log("结束了");
         
-    },{deep:true})
+        x()
+    }
+})
 </script>
 
 <style>
 /*  样式  */
 
-.person{
+.person {
     background-color: skyblue;
     box-shadow: 0 0 10px;
     border-radius: 10px;
     padding: 20px;
 }
-button{
+
+button {
     margin: 0 5px;
 }
 </style>
