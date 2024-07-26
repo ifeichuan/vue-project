@@ -1,21 +1,16 @@
 <template>
-        <h2 ref="title2">2222</h2>
-        <button @click="showLog">点我输出h2</button>
-        <Person ref = "ren"/>
-        <Person ref = "ren2"/>
+        <Person :list="personList"/>
 </template>
 
 <script lang="ts" setup name="App">
     //JS或TS
     import Person from './compoments/Person.vue';//导入组件
-    import {ref} from 'vue';
-    let title2 = ref()
-    let ren = ref()
-    function showLog(){
-        console.log(title2.value)
-        console.log(ren.value.title2);
-        
-    }
+    import {Persons} from '@/types';
+    let personList:Persons= [
+    {id:'121312x',name:'张三',age:60},
+    {id:'1213122x',name:'张三',age:61},
+    {id:'121312222x',name:'张三',age:30}
+    ]
 </script>
 
 

@@ -1,22 +1,33 @@
 <template>
     <div class="person">
-        <h1>China</h1>
-        <h2 ref="title2">Beijing</h2>
-        <h3>尚硅谷</h3>
-        <button @click="showLog">点我输出 h2 这个袁术</button>
+        <ul>
+            <li v-for="l in list" :key="l.id" >{{ l .id}}</li>
+        </ul>
     </div>
 
 </template>
 
 <script lang="ts" setup name='Person'>
-    import {ref} from 'vue';
-    //  创建一个title2,用于存储ref标记的内容
-    let title2 = ref()
-    function showLog(){
-        console.log(title2.value);
-        
-    }
-    defineExpose({title2})
+    import {type Persons} from '@/types'
+    import {defineProps,withDefaults} from 'vue'
+    // let person:PersonInter= {id:'121312x',name:'张三',age:60}
+    // 接收list并保存至x
+    // let x = defineProps(['list'])
+
+    // 接收list并限制类型
+    // defineProps<{list:Persons}>()
+
+    //  接收list + 限制类型 + 限制必要性(`?`) + 指定默认值
+    // defineProps<{list?:Persons}>()
+    withDefaults(defineProps<{list?:Persons}>(),{
+        list:()=>[{
+            id:'11112xx',
+            name:'zhangsna',
+            age:198
+    }]
+    })
+    // console.log(x.list);
+    
 </script>
 
 <style scoped>
