@@ -2,39 +2,21 @@
     <div class="person">
         <h2>当前求和为{{ sum }}</h2>
         <button @click="sumAdd">点我+1</button>
+        <br>
+        <img v-for="dog in dogList"  :src="dog" class="dog" :key="dog">
+        <br>
+        <button @click="addDog">点我+修狗</button>
     </div>
 
 </template>
 
 <script lang="ts" setup name='Person'>
-import {ref,onBeforeMount, onMounted, onBeforeUpdate, onUpdated, watch, onBeforeUnmount, onUnmounted} from 'vue';
-    let sum = ref(0);
-    function sumAdd(){
-        sum.value += 1
-    }
-    watch(sum,(newValue,oldValue)=>{
-        console.log('更新前:' + oldValue);
-        console.log('更新后:' + newValue);
+    import userSum from '@/hooks/userSum';
+    import useDog from '@/hooks/useDog';
+    let {sum,sumAdd} = userSum()
+    let {dogList,addDog} = useDog()
         
-    })
-    onBeforeMount(()=>{
-        console.log('挂载前');
-    })
-    onMounted(()=>{
-        console.log('挂载完毕');
-    })
-    onBeforeUpdate(()=>{
-        console.log('更新前',sum.value);
-    })
-    onUpdated(()=>{
-        console.log('更新完毕',sum.value);
-    })
-    onBeforeUnmount(() => {
-        console.log('卸载前');
-    })
-    onUnmounted(()=>{
-        console.log('卸载后');
-    })
+    
 </script>
 
 <style scoped>
@@ -49,5 +31,9 @@ import {ref,onBeforeMount, onMounted, onBeforeUpdate, onUpdated, watch, onBefore
 
 button {
     margin: 0 5px;
+}
+.dog {
+    margin-right: 10px;
+    width: 200px;
 }
 </style>
