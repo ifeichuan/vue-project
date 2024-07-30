@@ -2,17 +2,17 @@
     <div class="">
         <ul>
             <li v-for="news in newList" :key="news.id">
-                <!-- 第一张query写法 -->
-                <!-- <router-link :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`" class="link" active-class="active" >{{ news.title }}</router-link> -->
-                 <!--  -->
                 <router-link 
-                :to="{path:'/News/detail',query:{
-                    title:news.title,
+                :to="{
+                name:'xiangqing',
+                params:{
                     id:news.id,
-                    content:news.content
-                }}" >
+                    title:news.title,
+                    content:news.content,
+                }
+                }">
                 {{ news.title }}
-                </router-link>
+            </router-link>
             </li>
         </ul>
     </div>

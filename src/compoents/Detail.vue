@@ -1,21 +1,21 @@
 <template>
     <ul>
-        <li>{{ route.id }}</li>
-        <li>{{ route.title}}</li>
-        <li>{{ route.content }}</li>
+        <li>ID:{{ route.params.id }}</li>
+        <li>标题:{{ route.params.title }}</li>
+        <li>内容:{{ route.params.content }}</li>
     </ul>
 </template>
 
 <script lang="ts" setup name="Detail">
-    import {  toRefs } from 'vue';
-import {useRoute} from 'vue-router'
-    let route = toRefs( useRoute()).query;
-    // console.log('@',route.query);
+    import { useRoute } from 'vue-router';
+    let route = useRoute();
+    console.log(route);
     
 </script>
 
-<style>
-li ::marker{
-    color: aqua;
+<style scoped>
+li::marker{
+    content: '>';
+    color: green;
 }
 </style>
