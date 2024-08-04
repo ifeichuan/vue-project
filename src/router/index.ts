@@ -8,6 +8,7 @@ import Home from '@/compoents/Home.vue'
 import News from '@/compoents/News.vue'
 import About from '@/compoents/About.vue'
 import Detail from '@/compoents/Detail.vue'
+import props from '@/pages/props.vue'
 // 创建路由器
 const router = createRouter({
     // 路由器工作模式
@@ -25,14 +26,30 @@ const router = createRouter({
                 {
                     name:'xiangqing',
                     path:'detail/:id/:title/:content?',
-                    component:Detail
+                    component:Detail,
+                    // 第一种写法:将路由收到的所有params参数作为props传给录用主键
+                    // props:true
+                    // 第二种写法:可以自己决定将什么作为props给路由组件
+                    props(route){   
+                        return route.params
+                    }
+                    // 对象写法
                 }
             ]
         },
         {
             path:'/About',
             component:About
-        }
+        },
+        {
+            path:'/Props',
+            component:props
+        },
+        // {
+        //     path:'/',
+        //     redirect:'/Props'
+        // },
+
     ]
 })
 
