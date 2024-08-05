@@ -8,7 +8,9 @@ import Home from '@/compoents/Home.vue'
 import News from '@/compoents/News.vue'
 import About from '@/compoents/About.vue'
 import Detail from '@/compoents/Detail.vue'
-import props from '@/pages/props.vue'
+import Props from '@/pages/Props.vue'
+import CustomEvent from '@/pages/CustomEvent.vue'
+import Mitt from '@/pages/Mitt.vue'
 // 创建路由器
 const router = createRouter({
     // 路由器工作模式
@@ -43,8 +45,16 @@ const router = createRouter({
         },
         {
             path:'/Props',
-            component:props
+            component:Props
         },
+        {
+            path:'/CustomEvent',
+            component:CustomEvent
+        },
+        {
+            path:'/Mitt',
+            component:Mitt
+        }
         // {
         //     path:'/',
         //     redirect:'/Props'

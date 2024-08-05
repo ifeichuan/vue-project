@@ -9,7 +9,7 @@
 </template>
 
 <script lang='ts' setup name="Father">
-    import emitter from '@/untils/emitter';
+    import emitter from './untils/emitter';
     import { computed, onUnmounted, ref } from 'vue';
     import Child from './Child.vue';
     import { marked } from 'marked';

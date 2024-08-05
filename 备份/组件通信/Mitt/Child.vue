@@ -8,7 +8,7 @@
 
 <script lang='ts' setup name="Child">
 import { ref } from 'vue';
-import emitter from '@/untils/emitter';
+import emitter from './untils/emitter';
 let toy = ref('奥特曼')
 function getToy(){
     emitter.emit('send-toy',toy.value)

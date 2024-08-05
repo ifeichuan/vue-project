@@ -7,6 +7,7 @@ import router from './router'
 const app = createApp(App)
 // 使用router
 app.use(router)
+
 // 挂载整个应用到app中
 app.mount('#app')
 

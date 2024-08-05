@@ -3,7 +3,7 @@
 </template>
 
 <script lang='ts' setup name="props">
-import Father from '@/compoents/Father.vue';
+import Father from '../../备份/组件通信/Props/Father.vue';
 //JS或TS
 
 </script>
