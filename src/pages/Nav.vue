@@ -18,7 +18,8 @@ import { reactive } from 'vue';
 let pages = reactive([
     {id:1,url:'Props'},
     {id:2,url:'CustomEvent'},
-    {id:3,url:'Mitt'}
+    {id:3,url:'Mitt'},
+    {id:4,url:'Ref-Parent'}
 ])
 //JS或TS
 

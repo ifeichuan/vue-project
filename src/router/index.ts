@@ -11,6 +11,7 @@ import Detail from '@/compoents/Detail.vue'
 import Props from '@/pages/Props.vue'
 import CustomEvent from '@/pages/CustomEvent.vue'
 import Mitt from '@/pages/Mitt.vue'
+import RefParent from '@/pages/Ref-Parent.vue'
 // 创建路由器
 const router = createRouter({
     // 路由器工作模式
@@ -54,6 +55,10 @@ const router = createRouter({
         {
             path:'/Mitt',
             component:Mitt
+        },
+        {
+            path:'/Ref-Parent',
+            component:RefParent
         }
         // {
         //     path:'/',

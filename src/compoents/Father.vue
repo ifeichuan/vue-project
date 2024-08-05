@@ -1,29 +1,40 @@
 <template>
-    <div class="father">
+    <div class="father" >
         <h2>我是爹</h2>
         <h3>{{ car }}</h3>
-        <Child/>
-        <textarea v-model="mark"></textarea>
-        <div class="output" v-html="output"></div>
+        <button @click="changeToy">修改Child1的玩具</button>
+        <button @click="changeComputer">修改Child2的玩具</button>
+        <button @click="getAllChild($refs)">获取所有的子组件对象</button>
+        <Child ref="c1" />
+        <Child ref="c2"/>
+        
     </div>
 </template>
 
 <script lang='ts' setup name="Father">
-    import emitter from '@/untils/emitter';
-    import { computed, onUnmounted, ref } from 'vue';
-    import Child from './Child.vue';
-    import { marked } from 'marked';
+import  Child from './Child.vue'
+    import {ref} from 'vue'
+    let c1 = ref()
+    let c2 = ref()
     let car = ref('宝马')
-    let mark = ref('')
-    const output = computed(()=>marked(mark.value))
-    emitter.on('send-toy',(value)=>{
-        console.log('事件被触发',value);
-        
-    })
-    onUnmounted(()=>{
-        emitter.off('send-toy')
-    })
     
+    function changeToy(){
+        // console.log(c1.value);
+        // c1.value.toy = '小明治'
+        c1.value.toy+='明治'
+    }
+    function changeComputer(){
+        c2.value.toy = '联想'
+    }
+    function getAllChild(refs:any){
+        
+        for(let key in refs){
+            refs[key].book += 3
+        }
+        
+    }
+    // 将数据交给外部
+    defineExpose({car})
 </script>
 
 <style scoped>
@@ -34,8 +45,11 @@
     background-color: darkgreen;
     margin: 10px;
 }
-input{
-    height: 200px;
-    width: 200px;
+button{
+    /* border: 0; */
+    background-color: lightgreen;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
 }
 </style>
